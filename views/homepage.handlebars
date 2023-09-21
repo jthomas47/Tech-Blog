@@ -1,14 +1,17 @@
 <!-- Loop over each object in the blogs array -->
+{{#each blogs as |blog|}}
 <div class="row mb-4 project">
     <div class="col-md-5">
         <h2>
             <!-- link to blog post here -->
+            {{title}}
         </h2>
         <p>
             <!-- blog post content here -->
+            {{contents}}
         </p>
             <!-- username and date posted here -->
-        <p>Created by on</p>
+        <p>Created by {{user.name}} on {{date_created}}</p>
     </div>
 </div>
 {{/each}}
