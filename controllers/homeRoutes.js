@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog, User } = require('../models');
+const { Blog, User, Comment } = require('../models');
 // TODO: create and require withAuth helper
 
 
@@ -12,16 +12,20 @@ router.get('/', async (req, res) => {
                     model: User,
                     attributes: ['name'],
                 },
+                {
+                  model: Comment,
+                }
             ],
         });
         
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
-
+        console.log(blogs); 
         res.render('homepage', {
             blogs,
             logged_in: req.session.logged_in 
         });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });

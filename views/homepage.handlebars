@@ -1,17 +1,38 @@
 <!-- Loop over each object in the blogs array -->
 {{#each blogs as |blog|}}
-<div class="row mb-4 project">
-    <div class="col-md-5">
-        <h2>
-            <!-- link to blog post here -->
-            {{title}}
-        </h2>
-        <p>
-            <!-- blog post content here -->
-            {{contents}}
-        </p>
-            <!-- username and date posted here -->
-        <p>Created by {{user.name}} on {{date_created}}</p>
-    </div>
+
+<div class="col-md-5 post">
+    <h2>
+        <!-- link to blog post here -->
+     
+
+        {{title}}
+
+    </h2>
+    <p>
+        <!-- blog post content here -->
+        {{contents}}
+    </p>
+    <!-- username and date posted here -->
+    <p>Created by {{user.name}} on {{date_created}}</p>
+    <h2>Comments</h2>
+    {{#each comments}}
+    <p>{{ contents }}</p>
+    {{/each}}
+       {{#if ../logged_in}}
+        <form id="comment-form">
+            <label for="com">Comment</label><br>
+            <input type="text" id="com" name="com"><br><br>
+            <input type="submit" value="Submit" id="comment" data-id="{{blog.id}}">
+        </form>
+        {{/if}}
+
+
+
 </div>
+
 {{/each}}
+
+{{#if logged_in}}
+<script src="/js/comment.js"></script>
+{{/if}}
